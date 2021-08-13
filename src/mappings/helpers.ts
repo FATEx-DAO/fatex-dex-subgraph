@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { log, BigInt, BigDecimal, Address, EthereumEvent } from '@graphprotocol/graph-ts'
+import { BigInt, BigDecimal, Address, EthereumEvent } from '@graphprotocol/graph-ts'
 import { ERC20 } from '../types/Factory/ERC20'
 import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
@@ -7,7 +7,7 @@ import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair
 import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
-export const FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+export const FACTORY_ADDRESS = '0xa3ca37ff5d248c2d18eeddc7e7545a22fe1d505b'
 
 export let ZERO_BI = BigInt.fromI32(0)
 export let ONE_BI = BigInt.fromI32(1)
@@ -30,7 +30,7 @@ export function bigDecimalExp18(): BigDecimal {
 }
 
 export function convertEthToDecimal(eth: BigInt): BigDecimal {
-  return eth.toBigDecimal().div(exponentToBigDecimal(18))
+  return eth.toBigDecimal().div(exponentToBigDecimal(BigInt.fromI32(18)))
 }
 
 export function convertTokenToDecimal(tokenAmount: BigInt, exchangeDecimals: BigInt): BigDecimal {
@@ -43,10 +43,7 @@ export function convertTokenToDecimal(tokenAmount: BigInt, exchangeDecimals: Big
 export function equalToZero(value: BigDecimal): boolean {
   const formattedVal = parseFloat(value.toString())
   const zero = parseFloat(ZERO_BD.toString())
-  if (zero == formattedVal) {
-    return true
-  }
-  return false
+  return zero == formattedVal
 }
 
 export function isNullEthValue(value: string): boolean {
@@ -155,7 +152,6 @@ export function createLiquidityPosition(exchange: Address, user: Address): Liqui
     liquidityTokenBalance.save()
     pair.save()
   }
-  if (liquidityTokenBalance === null) log.error('LiquidityTokenBalance is null', [id])
   return liquidityTokenBalance as LiquidityPosition
 }
 

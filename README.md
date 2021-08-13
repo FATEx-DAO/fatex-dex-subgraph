@@ -1,6 +1,6 @@
-# Uniswap V2 Subgraph
+# FATExDEX Subgraph
 
-[Uniswap](https://uniswap.org/) is a decentralized protocol for automated token exchange on Ethereum.
+[FATExDEX](https://fatex.io/) is a decentralized protocol for automated token exchange on Harmony.
 
 This subgraph dynamically tracks any pair created by the uniswap factory. It tracks of the current state of Uniswap contracts, and contains derived stats for things like historical data and USD prices.
 
