@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Uniswap is a decentralized protocol for automated token exchange on Ethereum.
-repository: https://github.com/Uniswap/uniswap-v2-subgraph
+description: FATExDAO is a decentralized protocol for automated token exchange on Harmony.
+repository: https://github.com/FATEx-DAO/fatex-dex-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: Factory
     network: mainnet
     source:
-      address: '0xa3ca37FF5d248C2D18EedDC7e7545A22fe1D505B'
+      address: '0xa4EF1da515096DB768Bc47DBC080888795643442'
       abi: Factory
-      startBlock: 13550811
+      startBlock: 16437500
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
