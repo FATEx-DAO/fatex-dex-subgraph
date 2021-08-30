@@ -25,6 +25,8 @@ services:
       GRAPH_ALLOW_NON_DETERMINISTIC_IPFS: 1
       ethereum: "mainnet:no_eip1898,archive,traces:https://a.api.s0.t.hmny.io"
       RUST_LOG: info
+    networks:
+      - frontend
 
   nginx-runner:
     image: nginx:latest
@@ -36,6 +38,8 @@ services:
       - graph-node
     restart: always
     container_name: graph_node_nginx
+    networks:
+      - frontend
 
   ipfs:
     container_name: ipfs
@@ -44,6 +48,9 @@ services:
       - "5001:5001"
     volumes:
       - ./data/ipfs:/data/ipfs
+    networks:
+      - frontend
+
   postgres:
     image: postgres
     ports:
@@ -55,3 +62,8 @@ services:
       POSTGRES_DB: graph-node
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - frontend
+
+networks:
+  frontend:
