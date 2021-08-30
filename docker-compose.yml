@@ -61,3 +61,6 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
       - ./nginx/nginx.conf:/config/nginx/site-confs/default
+
+networks:
+  graph-node:
