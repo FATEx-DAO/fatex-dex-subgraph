@@ -25,7 +25,6 @@ services:
       GRAPH_ALLOW_NON_DETERMINISTIC_IPFS: 1
       ethereum: "mainnet:no_eip1898,archive,traces:https://a.api.s0.t.hmny.io"
       RUST_LOG: info
-      VIRTUAL_HOST: blog.DOMAIN.TLD
     networks:
       - graph-node
 
