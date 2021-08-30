@@ -10,8 +10,8 @@
     "deploy-local": "graph deploy fatex-dao/fatex-dex --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "deploy": "graph deploy fatex-dao/fatex-dex --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug",
     "deploy-staging": "graph deploy $THE_GRAPH_GITHUB_USER/$THE_GRAPH_SUBGRAPH_NAME /Uniswap --ipfs https://api.staging.thegraph.com/ipfs/ --node https://api.staging.thegraph.com/deploy/",
-    "create-harmony": "graph create --node http://fatex-dao.subgraph.fatex.io:8020 fatex-dao/fatex-dex",
-    "deploy-harmony": "graph deploy --node http://fatex-dao.subgraph.fatex.io:8020 --ipfs http://fatex-dao.subgraph.fatex.io:5001 fatex-dao/fatex-dex",
+    "create-harmony": "graph create --node https://sushi.graph.t.hmny.io:8020 fatex-dao/fatex-dex",
+    "deploy-harmony": "graph deploy --node https://sushi.graph.t.hmny.io:8020 --ipfs https://sushi.graph.t.hmny.io:5001 fatex-dao/fatex-dex",
     "watch-local": "graph deploy graphprotocol/Uniswap2 --watch --debug --node http://127.0.0.1:8020/ --ipfs http://localhost:5001"
   },
   "devDependencies": {
