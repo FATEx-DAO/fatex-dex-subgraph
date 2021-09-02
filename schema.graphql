@@ -54,6 +54,12 @@ type Token @entity {
   pairQuote: [Pair!]! @derivedFrom(field: "token1")
 }
 
+type PairAddressMap @entity {
+  # token0/1-token1/0
+  id: ID!
+  pairAddress: Bytes!
+}
+
 type Pair @entity {
   # pair address
   id: ID!

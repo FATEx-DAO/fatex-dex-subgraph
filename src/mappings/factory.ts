@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { log } from '@graphprotocol/graph-ts'
-import { UniswapFactory, Pair, Token, Bundle } from '../types/schema'
+import { UniswapFactory, Pair, Token, Bundle, PairAddressMap } from '../types/schema'
 import { PairCreated } from '../types/Factory/Factory'
 import { Pair as PairTemplate } from '../types/templates'
 import {
@@ -82,6 +82,14 @@ export function handleNewPair(event: PairCreated): void {
     // token1.allPairs = []
     token1.txCount = ZERO_BI
   }
+
+  let map1 = new PairAddressMap(event.params.token0.toHexString().concat("-").concat(event.params.token1.toHexString()))
+  map1.pairAddress = event.params.pair
+  map1.save()
+
+  let map2 = new PairAddressMap(event.params.token1.toHexString().concat("-").concat(event.params.token0.toHexString()))
+  map2.pairAddress = event.params.pair
+  map2.save()
 
   let pair = new Pair(event.params.pair.toHexString()) as Pair
   pair.token0 = token0.id
