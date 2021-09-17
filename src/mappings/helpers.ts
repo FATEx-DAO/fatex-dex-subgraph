@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
-import { BigInt, BigDecimal, Address, EthereumEvent } from '@graphprotocol/graph-ts'
+import { BigInt, BigDecimal, Address, EthereumEvent, log } from '@graphprotocol/graph-ts'
 import { ERC20 } from '../types/Factory/ERC20'
+import { Pair as PairContract } from '../types/templates/Pair/Pair'
 import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
 import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair } from '../types/schema'
@@ -12,6 +13,16 @@ export let ONE_BI = BigInt.fromI32(1)
 export let ZERO_BD = BigDecimal.fromString('0')
 export let ONE_BD = BigDecimal.fromString('1')
 export let BI_18 = BigInt.fromI32(18)
+
+export function getPairContractBalanceOf(contract: PairContract, user: Address): BigInt {
+  let balanceResult = contract.try_balanceOf(user)
+  if (balanceResult.reverted) {
+    log.error("Could not get {} balance due to reversion", [user.toHexString()])
+    return getPairContractBalanceOf(contract, user)
+  }
+
+  return balanceResult.value
+}
 
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
   let bd = BigDecimal.fromString('1')
