@@ -5,8 +5,8 @@ import { ZERO_BD, ONE_BD } from './helpers'
 
 const WONE_ADDRESS = '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a'
 const USDC_WONE_PAIR = '0xe4c5d745896bce117ab741de5df4869de8bbf32f'
-const BUSD_WONE_PAIR = '0x0000000000000000000000000000000000000000'
-const USDT_WONE_PAIR = '0x0000000000000000000000000000000000000000'
+const BUSD_WONE_PAIR = '0x125fe08811f40f2fc2ae7a6daa4b4ecc5dafb88d'
+const USDT_WONE_PAIR = '0xa7ce36f405abf44b2b175ffe6764fd85a49b345a'
 
 export function getOnePriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -57,10 +57,10 @@ let WHITELIST: string[] = [
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
-let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('1000')
+let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('100')
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_ONE = BigDecimal.fromString('2500')
+let MINIMUM_LIQUIDITY_THRESHOLD_ONE = BigDecimal.fromString('100')
 
 /**
  * Search through graph to find derived Eth per token.
