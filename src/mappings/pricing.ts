@@ -71,7 +71,7 @@ export function findOnePerToken(token: Token): BigDecimal {
     return ONE_BD
   }
   // loop through whitelist and check if paired with any
-  for (let i = 0; i < WHITELIST.length; ++i) {
+  for (let i = 0; i < WHITELIST.length; i++) {
     let pairAddressResult = PairAddressMap.load(token.id.concat('-').concat(WHITELIST[i]))
     if (pairAddressResult != null) {
       let pair = Pair.load(pairAddressResult.pairAddress.toHexString())
