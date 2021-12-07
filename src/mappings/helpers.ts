@@ -65,6 +65,9 @@ export function fetchTokenSymbol(tokenAddress: Address): string {
   if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
     return 'AAVE'
   }
+  if (tokenAddress.toHexString() == '0x72cb10c6bfa5624dd07ef608027e366bd690048f') {
+    return 'JEWEL'
+  }
 
   let contract = ERC20.bind(tokenAddress)
   let contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress)
@@ -94,6 +97,9 @@ export function fetchTokenName(tokenAddress: Address): string {
   }
   if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
     return 'Aave Token'
+  }
+  if (tokenAddress.toHexString() == '0x72cb10c6bfa5624dd07ef608027e366bd690048f') {
+    return 'DeFi Kingdoms'
   }
 
   let contract = ERC20.bind(tokenAddress)
