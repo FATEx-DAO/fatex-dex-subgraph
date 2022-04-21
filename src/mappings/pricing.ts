@@ -50,13 +50,13 @@ let WHITELIST: string[] = [
 let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('100')
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_ONE = BigDecimal.fromString('100')
+let MINIMUM_LIQUIDITY_THRESHOLD_MATIC = BigDecimal.fromString('1')
 
 /**
  * Search through graph to find derived Eth per token.
  * @todo update to be derived ETH (add stablecoin estimates)
  **/
-export function findOnePerToken(token: Token): BigDecimal {
+export function findMaticPerToken(token: Token): BigDecimal {
   if (token.id == WMATIC_ADDRESS) {
     return ONE_BD
   }
@@ -65,11 +65,11 @@ export function findOnePerToken(token: Token): BigDecimal {
     let pairAddressResult = PairAddressMap.load(token.id.concat('-').concat(WHITELIST[i]))
     if (pairAddressResult != null) {
       let pair = Pair.load(pairAddressResult.pairAddress.toHexString()) as Pair
-      if (pair.token0 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ONE)) {
+      if (pair.token0 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_MATIC)) {
         let token1 = Token.load(pair.token1) as Token
         return pair.token1Price.times(token1.derivedETH as BigDecimal) // return token1 per our token * Eth per token 1
       }
-      if (pair.token1 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ONE)) {
+      if (pair.token1 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_MATIC)) {
         let token0 = Token.load(pair.token0) as Token
         return pair.token0Price.times(token0.derivedETH as BigDecimal) // return token0 per our token * ETH per token 0
       }

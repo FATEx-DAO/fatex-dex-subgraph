@@ -12,7 +12,7 @@
     "deploy-staging": "graph deploy $THE_GRAPH_GITHUB_USER/$THE_GRAPH_SUBGRAPH_NAME /Uniswap --ipfs https://api.staging.thegraph.com/ipfs/ --node https://api.staging.thegraph.com/deploy/",
     "create-harmony": "graph create --node https://graph.t.hmny.io:8020 fatex-dao/fatex-dex",
     "deploy-harmony": "graph deploy --node https://graph.t.hmny.io:8020 --ipfs http://graph.t.hmny.io:5001 fatex-dao/fatex-dex",
-    "deploy-polygon": "graph deploy --node https://graph.t.hmny.io:8020 --ipfs http://graph.t.hmny.io:5001 fatex-dao/fatex-dex"
+    "deploy-polygon": "graph deploy --product hosted-service coreycaplan3/fatexfi-v2"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.22.0",

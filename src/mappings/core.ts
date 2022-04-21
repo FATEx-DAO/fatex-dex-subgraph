@@ -12,7 +12,7 @@ import {
 } from '../types/schema'
 import { Pair as PairContract, Mint, Burn, Swap, Transfer, Sync } from '../types/templates/Pair/Pair'
 import { updatePairDayData, updateTokenDayData, updateUniswapDayData, updatePairHourData } from './dayUpdates'
-import { getOnePriceInUSD, findOnePerToken, getTrackedVolumeUSD, getTrackedLiquidityUSD } from './pricing'
+import { getOnePriceInUSD, findMaticPerToken, getTrackedVolumeUSD, getTrackedLiquidityUSD } from './pricing'
 import {
   convertTokenToDecimal,
   ADDRESS_ZERO,
@@ -246,8 +246,8 @@ export function handleSync(event: Sync): void {
   bundle.ethPrice = getOnePriceInUSD()
   bundle.save()
 
-  token0.derivedETH = findOnePerToken(token0 as Token)
-  token1.derivedETH = findOnePerToken(token1 as Token)
+  token0.derivedETH = findMaticPerToken(token0 as Token)
+  token1.derivedETH = findMaticPerToken(token1 as Token)
   token0.save()
   token1.save()
 
