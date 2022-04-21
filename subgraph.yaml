@@ -6,14 +6,14 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: mainnet
+    network: matic
     source:
-      address: '0xa4EF1da515096DB768Bc47DBC080888795643442'
+      address: '0x937e0c67d21Df99eaEa0e6a1055A5b783291DC8f'
       abi: Factory
-      startBlock: 16437500
+      startBlock: 27073859
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.3
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       file: ./src/mappings/factory.ts
       entities:
@@ -34,12 +34,12 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: mainnet
+    network: matic
     source:
       abi: Pair
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.3
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       file: ./src/mappings/core.ts
       entities:
