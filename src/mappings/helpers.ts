@@ -101,6 +101,12 @@ export function fetchTokenName(tokenAddress: Address): string {
   if (tokenAddress.toHexString() == '0x72cb10c6bfa5624dd07ef608027e366bd690048f') {
     return 'DeFi Kingdoms'
   }
+  if (tokenAddress.toHexString() == '0x4853365bc81f8270d902076892e13f27c27e7266') {
+    return 'FATE'
+  }
+  if (tokenAddress.toHexString() == '0x56be76031a4614370fa1f188e01e18a1cf16e642') {
+    return 'xFATE'
+  }
 
   let contract = ERC20.bind(tokenAddress)
   let contractNameBytes = ERC20NameBytes.bind(tokenAddress)
