@@ -10,29 +10,29 @@ const USDT_WMATIC_PAIR = ''
 
 export function getOnePriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdcPair = Pair.load(USDC_WMATIC_PAIR) // usdc is token0
+  let usdcPair = Pair.load(USDC_WMATIC_PAIR) // usdc is token1
   let busdPair = Pair.load(BUSD_WMATIC_PAIR) // busd is token1
   let usdtPair = Pair.load(USDT_WMATIC_PAIR) // usdt is token0
 
   // all 3 have been created
   if (usdcPair !== null && busdPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = usdcPair.reserve1.plus(busdPair.reserve0).plus(usdtPair.reserve1)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
+    let totalLiquidityETH = usdcPair.reserve0.plus(busdPair.reserve0).plus(usdtPair.reserve1)
+    let usdcWeight = usdcPair.reserve0.div(totalLiquidityETH)
     let busdWeight = busdPair.reserve0.div(totalLiquidityETH)
     let usdtWeight = usdtPair.reserve1.div(totalLiquidityETH)
-    return usdcPair.token0Price
+    return usdcPair.token1Price
       .times(usdcWeight)
       .plus(busdPair.token1Price.times(busdWeight))
       .plus(usdtPair.token0Price.times(usdtWeight))
     // dai and USDC have been created
   } else if (usdcPair !== null && busdPair !== null) {
-    let totalLiquidityETH = usdcPair.reserve1.plus(busdPair.reserve0)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
+    let totalLiquidityETH = usdcPair.reserve0.plus(busdPair.reserve0)
+    let usdcWeight = usdcPair.reserve0.div(totalLiquidityETH)
     let busdWeight = busdPair.reserve0.div(totalLiquidityETH)
-    return usdcPair.token0Price.times(usdcWeight).plus(busdPair.token1Price.times(busdWeight))
+    return usdcPair.token1Price.times(usdcWeight).plus(busdPair.token1Price.times(busdWeight))
     // USDC is the only pair so far
   } else if (usdcPair !== null) {
-    return usdcPair.token0Price
+    return usdcPair.token1Price
   } else {
     return ZERO_BD
   }
